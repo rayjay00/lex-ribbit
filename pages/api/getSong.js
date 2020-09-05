@@ -3,8 +3,8 @@ const Archiver = require("archiver");
 
 export default async (req, res) => {
   AWS.config.update({
-    accessKeyId: PROCESS.ENV.AWS_ID,
-    secretAccessKey: PROCESS.ENV.AWS_KEY,
+    accessKeyId: process.env.AWS_ID,
+    secretAccessKey: process.env.AWS_KEY,
   });
 
   var s3 = new AWS.S3();
