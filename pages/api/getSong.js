@@ -1,5 +1,4 @@
 const AWS = require("aws-sdk");
-var fs = require("fs");
 const Archiver = require("archiver");
 
 export default async (req, res) => {
