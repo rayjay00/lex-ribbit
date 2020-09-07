@@ -14,9 +14,6 @@ export default async (req, res) => {
     const tracksToAdd = [
       "Ideas.mp3",
       "I Miss The Old Me Too.mp3",
-      "Oh No.aif",
-      "bike2.aif",
-      "ozark eiffel tower.aif",
     ];
 
     // const result = await s3.getObject(params).promise();
@@ -45,8 +42,6 @@ export default async (req, res) => {
       "Content-Type": "application/zip",
       "Content-disposition": "attachment; filename=MuhCustomAlbum.zip",
     });
-
-    res.json({ data: true });
   } catch (error) {
     res.status(500);
     res.json({ data: error.message });
