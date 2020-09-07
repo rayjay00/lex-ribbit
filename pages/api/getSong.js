@@ -30,6 +30,7 @@ export default async (req, res) => {
     });
 
     const resolvedTracks = await Promise.all(trackRequests);
+    // trackName includes extension e.g. Ideas.mp3 Swager.aiff
     const allBuffers = resolvedTracks.map((track) => track.Body);
     // const buffer = result.Body;
 
@@ -40,7 +41,7 @@ export default async (req, res) => {
 
     // Create zip with some files. Two dynamic, one static. Put #2 in a sub folder.
     allBuffers.forEach((buffer, index) =>
-      zip.append(buffer, { name: `${index}.mp3` })
+      zip.append(buffer, { name: tracksToAdd[index] })
     );
     // zip.append(allBuffers[0], { name: "1.mp3" });
     // zip.append(allBuffers[1], { name: "1.mp3" });
@@ -52,7 +53,7 @@ export default async (req, res) => {
       "Content-disposition": "attachment; filename=MuhCustomAlbum.zip",
     });
 
-    // res.json({ allBuffers });
+    // res.json({ data: true });
   } catch (error) {
     res.status(500);
     res.json({ data: error.message });

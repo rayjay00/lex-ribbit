@@ -1,12 +1,15 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>LxTrfrg</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -34,44 +37,28 @@ export default function Home() {
               "Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif",
             fontWeight: "100",
           }}
-        >
-          <a
-            href="https://soundcloud.com/lex-treefrog"
-            title="Lex Treefrog"
-            target="_blank"
-            style={{
-              color: "#cccccc",
-              textDecoration: "none",
-            }}
-          >
-            Lex Treefrog
-          </a>{" "}
-          ·{" "}
-          <a
-            href="https://soundcloud.com/lex-treefrog/sets/causal-inference"
-            title="Causal Inference"
-            target="_blank"
-            style={{
-              color: "#cccccc",
-              textDecoration: "none",
-            }}
-          >
-            Causal Inference
-          </a>
-        </div>
+        ></div>
 
         <p className={styles.description}>
-          <code className={styles.code}>HEAD IS DEAD</code>
-          <a
-            className="button"
-            href="/api/getSong"
-            download
-            style={{
-              display: "block",
-            }}
-          >
-            DOWNLOAD NOW FOLKS
-          </a>
+          {isLoading ? (
+            <marquee>
+              <code className={styles.code}>
+                Ur download should begin soon.... Thank you.
+              </code>
+            </marquee>
+          ) : (
+            <a
+              className="button"
+              href="/api/getSong"
+              onClick={() => setIsLoading(true)}
+              download
+              style={{
+                display: "block",
+              }}
+            >
+              DOWNLOAD NOW FOLKS
+            </a>
+          )}
         </p>
       </main>
     </div>
