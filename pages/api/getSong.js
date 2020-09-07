@@ -10,11 +10,6 @@ export default async (req, res) => {
   var s3 = new AWS.S3();
 
   try {
-    const params = {
-      Bucket: "lexribbit",
-      Key: "Ideas.mp3",
-    };
-
     // sample response from dynamo
     const tracksToAdd = [
       "Ideas.mp3",
@@ -43,8 +38,6 @@ export default async (req, res) => {
     allBuffers.forEach((buffer, index) =>
       zip.append(buffer, { name: tracksToAdd[index] })
     );
-    // zip.append(allBuffers[0], { name: "1.mp3" });
-    // zip.append(allBuffers[1], { name: "1.mp3" });
 
     zip.finalize();
 
@@ -53,11 +46,9 @@ export default async (req, res) => {
       "Content-disposition": "attachment; filename=MuhCustomAlbum.zip",
     });
 
-    // res.json({ data: true });
+    res.json({ data: true });
   } catch (error) {
     res.status(500);
     res.json({ data: error.message });
   }
-
-  // s3.getObject(params, callback);
 };
